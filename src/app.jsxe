@@ -1,0 +1,5 @@
+function Appliction() {
+    return (<div exact>
+      Привет
+    </div>);
+}

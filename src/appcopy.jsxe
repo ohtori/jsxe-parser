@@ -1,0 +1,10 @@
+const main = 'main';
+
+function Appliction() {
+    return (<Original title={main} className="Ilia" small class="Vasia">
+      <div>
+        <p smell>
+        </p>
+      </div>
+    </Original>);
+}

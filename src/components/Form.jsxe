@@ -1,0 +1,47 @@
+import React, {useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createPost, showAlert } from '../redux/actions';
+import { Alert } from '../components/Alert';
+
+export const Form = () => {
+  const dispatch = useDispatch();
+  const error = useSelector(state => state.error);
+  const [input, setInput] = useState({title: ''});
+
+  const inputChange = e => {
+    setInput({[e.target.name]: e.target.value});    
+  }
+
+  const formSubmit = e => {
+    e.preventDefault();  
+    if (!input.title.trim() || input.title.trim().length < 3) {
+      dispatch(showAlert('Слишкам мало букаф!'));
+      return;
+    }
+    const post = {
+      title: input.title,
+      id: Date.now()
+    }
+    dispatch(createPost(post));
+  }
+
+  return (
+    <div className="input-group mb-3">
+      <form onSubmit={formSubmit}>
+
+        <div className="form-group">
+          <label htmlFor="title">Заголовок поста</label>
+          <input 
+            type="text" 
+            className="form-control" 
+            name="title"
+            id="title"
+            value={input.value} 
+            onChange={inputChange} 
+          />
+        </div>
+        <button type="submit" className="btn btn-success">Создать</button>
+      </form>
+    </div>
+  )
+}
