@@ -8,6 +8,9 @@ function predecorateString(str: string): string {
           });
         });
     })
+    .replace(/{\s*([.]{3}\s*[^\s,'"`}]+)}/gi, (match, p1) => {
+      return `___SPREAD___START___${p1}___SPREAD___END___`;
+    })
     .replace(/=>/gi, '__ARROW___FUNCTION__')
     .replace(/<>/gi, '<React.Fragment>')
     .replace(/<\/>/gi, '</React.Fragment>')

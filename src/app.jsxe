@@ -1,5 +1,5 @@
 function Appliction() {
-    return (<div exact>
+    return (<div {...title} exact>
       Привет
     </div>);
 }
